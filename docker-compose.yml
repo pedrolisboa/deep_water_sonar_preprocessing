@@ -1,0 +1,16 @@
+version: '3.3'
+        
+services:
+  devenv:
+    build: ./docker/devenv
+    ports: 
+       - 127.0.0.1:8081:8888
+    restart: unless-stopped
+    env_file: .env
+    volumes: 
+       - "./src:/home/tars/src:Z"
+       - "./notebooks:/home/tars/notebooks:Z"
+       - "./experiments:/home/tars/experiments:Z"
+       - "./data:/home/tars/data:Z"
+       - "/home/pedro.lisboa/Workspace/datasets/sonar:/home/tars/data/raw:Z"
+    entrypoint: jupyter notebook --ip=0.0.0.0
